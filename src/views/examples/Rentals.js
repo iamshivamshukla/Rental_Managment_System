@@ -33,6 +33,7 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 
 const Rentals = () => {
   const [prodropdownOpen, setproDropdownOpen] = React.useState(false);
@@ -83,7 +84,7 @@ const Rentals = () => {
     setId(datas._id);
     setEditData(datas);
   };
-
+  let navigate = useNavigate();
   const handleSubmit = async (values) => {
     console.log(values, "values");
     try {
@@ -94,6 +95,7 @@ const Rentals = () => {
       );
 
       if (res.data.statusCode === 200) {
+        navigate("/admin/tables");
         alert(res.data.message);
       } else {
         alert(res.data.message);
@@ -758,9 +760,9 @@ const Rentals = () => {
                             Operating Account
                           </label>
                           <br />
-                          <Dropdown isOpen={bankdropdownOpen} toggle={toggle2}>
+                          {/* <Dropdown isOpen={bankdropdownOpen} toggle={toggle2}>
                             <DropdownToggle caret style={{ width: "150px" }}>
-                              Select &nbsp;&nbsp;&nbsp;&nbsp;
+                              Select 
                               <DropdownMenu style={{ width: "200px" }}>
                                 <DropdownItem>JPMorgan Chase Bank</DropdownItem>
                                 <DropdownItem>Bank of America</DropdownItem>
@@ -770,6 +772,19 @@ const Rentals = () => {
                                 <DropdownItem>Capital One</DropdownItem>
                               </DropdownMenu>
                             </DropdownToggle>
+                          </Dropdown> */}
+                          <Dropdown isOpen={bankdropdownOpen} toggle={toggle2}>
+                            <DropdownToggle caret style={{ width: "150px" }}>
+                              Select 
+                            </DropdownToggle>
+                            <DropdownMenu style={{ width: "200px" }}>
+                              <DropdownItem>JPMorgan Chase Bank</DropdownItem>
+                              <DropdownItem>Bank of America</DropdownItem>
+                              <DropdownItem>Wells Fargo Bank</DropdownItem>
+                              <DropdownItem>Citibank</DropdownItem>
+                              <DropdownItem>U.S.Bank</DropdownItem>
+                              <DropdownItem>Capital One</DropdownItem>
+                            </DropdownMenu>
                           </Dropdown>
                         </FormGroup>
                       </Col>
